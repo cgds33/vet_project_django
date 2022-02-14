@@ -20,7 +20,7 @@ The project was developed with Django v4.0.2 on Python v3.8
 HTML pages were created using .css and .js files of Bootstrap v4.0.0 and jquery v3.2.1 software placed in the static folder. 
 <br><br>
 
-#### 2.3. Other Third-party Software / Dependencies
+#### 2.3. Other Third-party Softwares / Dependencies
 
 
 #### 2.3.1. Pillow
