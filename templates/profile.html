@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+<div class="row">
+    <div class="col">
+
+        <h3>Profile</h3>
+        <hr>
+        <br>
+        <p>
+            Welcome, {{request.user.username}}
+            <br>
+            {% if exist == False %}
+                If you edit profile, you will be shown on "Animal Lover" page.
+            {% endif %}
+        </p>
+        <br>
+        <a class = "btn btn-primary" href = "/profile/contact/">Update Contact Info</a>
+        <br><br> 
+    </div>
+</div>
+
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">Full Name: {{info.fullname}}</li>
+    <li class="list-group-item">Interest: {{info.interest}}</li>
+    <li class="list-group-item">E-Mail: {{info.email}}</li>
+    <li class="list-group-item">Phone: {{info.phone}}</li>
+    <li class="list-group-item">Biography: {{info.bio}}</li>
+</ul>
+<br><br>
+
+{% endblock %}
+

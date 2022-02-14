@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+
+<div class="row">
+    <div class="col">
+
+        <h3>Dashboard</h3>
+        <hr>
+        <br>
+        <p>
+            Welcome, {{request.user.username}}
+        </p>
+        <br>
+    </div>
+</div>
+
+<hr>
+<a class = "btn btn-primary" href = "/pets/addpet">Add Pet</a>
+<br><br>
+{% if pets %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Pet Type</th>
+        <th scope="col">Pet Species</th>
+        <th scope="col">Date</th>
+        <th scope="col">Update</th>
+        {% if user.is_superuser %}
+        <th scope="col">Delete</th>
+        {% endif %}
+        
+    </tr>
+    </thead>
+    <tbody>
+        {% for pet in pets %}
+        
+        <tr>
+        <th scope="row">{{pet.id}}</th>
+        <td><a href="/pets/pet/{{pet.id}}">{{pet.petName}}</a></td>
+        <td>{{pet.petType}}</td>
+        <td>{{pet.petSpecies}}</td>
+        <td>{{pet.createdDate}}</td>
+        <td><a href="/pets/update/{{pet.id}}" class="btn btn-primary">Update</a></td>
+        {% if user.is_superuser %}
+        <td><a href="/pets/delete/{{pet.id}}" class="btn btn-danger">Delete</a></td>
+        {% endif %}
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-secondary">You don't have a registered pet</div>
+{% endif %} 
+<br><br><br><br>   
+
+{% endblock %}

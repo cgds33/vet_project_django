@@ -1,0 +1,80 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+
+<div class="row">
+    <div class="container mt-3">
+        <h3>All Pets</h3>
+        <br>
+        {% csrf_token %}
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Search Pet" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <hr>
+    </div>
+</div>
+
+
+{% if pets %}
+
+    {% for pet in pets %}
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h3 class="fw-bolder mb-1"><a href="/pets/pet/{{pet.id}}">Pet Name: {{pet.petName}}</a></h3>
+                            <hr>
+                            <!-- Post meta content-->
+                            <div class="text-muted fst-italic mb-2">{{pet.createdDate}} by <b>{{pet.author}}</b></div>
+                            <!-- Profile -->
+                            {% for contact in contacts %}
+                                {% if contact.author == pet.author %}
+                                <a type="button" class="btn btn-outline-info btn-sm" href="/profile/author/{{contact.id}}">{{pet.author}}'s Profile</a> <br>
+                                {% endif %}
+                            {% endfor %}
+                            <!-- Post categories -->
+                            <a class="badge badge-success" href="#!">{{pet.petType}}</a>
+                            <a class="badge badge-info" href="#!">{{pet.petSpecies}}</a>
+                        </header>
+
+                        <!-- Preview image figure-->
+                        {% if pet.petImage %}
+                        <figure class="mb-4"><img class="img-fluid rounded" src="{{pet.petImage.url}}" alt=""></figure>
+                        {% endif %}
+                        <!-- Post content-->
+                        
+                        <div class="article-body">
+                            {{pet.content|safe}} <!-- remove linebreaks -->
+                        </div>
+                        <br><br>
+                        <!-- admin control-->
+                        {% if user.is_superuser %}
+                        <h5>Admin Control for {{pet.petName}}</h5>
+                        <a href="/pets/update/{{pet.id}}" class="btn btn-primary btn-sm">Update</a>
+                        <a href="/pets/delete/{{pet.id}}" class="btn btn-danger btn-sm">Delete</a>
+                        {% endif %}
+                        <hr>
+                    </article>
+                </div>
+            </div>
+        </div>
+    <br>
+
+    {% endfor %}
+
+
+{% else %}
+<div class="alert alert-secondary">Pet not found ..</div>
+{% endif %}
+
+<br>
+<br>
+<br>
+{% endblock body %}

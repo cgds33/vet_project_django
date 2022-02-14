@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+
+
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+
+        <h3>Contact Information</h3>
+        <hr>
+        <br>
+
+        <form method = "post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type = "summit" class="btn btn-secondary">Save Informations</button>
+        </form>
+        <br><br><br>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
