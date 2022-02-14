@@ -9,7 +9,7 @@ The project can be run with the command `python manage.py runserver` without the
 The admin panel URL is "/admin" as in Django default. Admin panel login information is “id = admin, password = password”. For security reasons, these default settings must be changed before the project is published.
 <br><br>
 
-### 2. Requirements and Third-party Software Used 
+### 2. Dependencies and Third-party Software Used 
 <br>
 
 #### 2.1. Django
