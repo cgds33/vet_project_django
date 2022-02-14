@@ -56,7 +56,8 @@ Type the following command on the command line to install.
 
 `pip install django-crispy-forms`
 
-<br><br>
+<br>
+
 ### 3. Methods
 <br>
 
